@@ -1,5 +1,5 @@
-# 基于个人理解的search算法 20210520 TianzeGao
-def search(g, s):
+# 基于个人理解的广度优先算法 20210520 TianzeGao
+def search_breadth_first(g, s):
     s -= 1
     marked_nodes = [s]
     node_list = [s]
@@ -26,4 +26,4 @@ if __name__ == '__main__':
          [0, 0, 0, -1, 0, -1, 1, -1, 0],
          [0, 0, 0, 0, -1, 0, 0, 1, 1],
          [0, 0, 0, 0, 0, 0, -1, 0, -1]]
-    search(G, 1)  # 输入G矩阵和几号点
+    search_breadth_first(G, 1)  # 输入G矩阵和几号点
