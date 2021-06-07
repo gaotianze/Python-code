@@ -1,16 +1,20 @@
 # Label-correcting Algorithm By TianzeGao 20210605
 def label_correcting(A):
-    n=len(A)
-    d_i={1:0}
-    for j in range(1, n):
-        d_i[j + 1]=99 # 初始化
+    n = len(A)
+    d_i = []
+    pred = []
+    for j in range(n):
+        d_i.append(99)  # 初始化
+        pred.append(0)
+    d_i[0] = 0
 
-    for i in range(1, n+1):
-        now_node=i
-        pre_len=d_i[i]
-        for j in range(0, n):
-            if A[now_node - 1][j] != 0 and A[now_node - 1][j] != 999:
-                d_i[j + 1] = min(A[now_node - 1][j] + pre_len, d_i[j + 1])  # min[d(j)+Cij, d(j)]
+    # 遍历所有弧的思路：从头开始A矩阵中所有不为0也不为M的值，就是弧，对其验证 min[d(i)+Cij, d(j)] (此处仅执行了一个轮回)
+    for i in range(n):
+        for j in range(n):
+            if A[i][j] != 0 and A[i][j] != 999:
+                if d_i[j] > A[i][j] + d_i[i]:
+                    d_i[j] = A[i][j] + d_i[i]
+                    pred[j]=i
     print(d_i)
 
 if __name__ == '__main__':
@@ -22,11 +26,11 @@ if __name__ == '__main__':
          [999, 999, 999, 1, 0, 3],
          [999, 999, 999, 999, 999, 0]]
 
-    '''A = [[0,1,2,999,999,999],
+    A = [[0,1,2,999,999,999],
          [999,0,7,3,999,999],
          [999,999,0,999,5,999],
          [999,999,5,0,10,13],
          [999,999,999,999,0,4],
-         [999,999,999,999,999,0]]'''  # 备用测试案例
+         [999,999,999,999,999,0]]  # 备用测试案例
 
     label_correcting(A)
