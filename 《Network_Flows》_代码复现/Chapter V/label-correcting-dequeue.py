@@ -23,7 +23,6 @@ def label_correcting_dequeue(A):
                     else:
                         node_list.append(j)
                         node_list_history.append(j)
-
     print(d_i)
 
 if __name__ == '__main__':
